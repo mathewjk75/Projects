@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Practo>
+	<Homepage>
+		<url>https://www.practo.com</url>
+		<searchData>tawang</searchData>
+	</Homepage>
+	<appointment>
+		<appointmenttime>5:30 PM</appointmenttime>
+		<username>Mathew</username>
+		<emailId>mjk@yahoo.com</emailId>
+	</appointment>
+	<Doctor>
+		<SelectCity>Bangalore</SelectCity> 	
+		<DocSelection>Pediatric Dentist</DocSelection>
+		<DocChoice>Dentist</DocChoice>
+		<SelectedDoc>Dr. Ramya</SelectedDoc>
+	</Doctor>
+</Practo>

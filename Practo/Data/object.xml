@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Practo>
+	<Appointment>
+		<Booking>button-text</Booking>
+		<Username>name</Username>
+		<EmailId>email</EmailId>
+		<PhoneNumber>mobile</PhoneNumber>
+		<Submit>book-button</Submit>
+	</Appointment>
+	<Doctor>
+		<City>consult-city</City>
+		<Phone>//span[contains(text(), 'Show Number') and contains(@class,'button-text')]</Phone>
+		<DSelection>atric Dentist</DSelection>
+        <SelectCity>Bangalore</SelectCity> 	
+        <PhoneText>phone</PhoneText>
+        <Searchbox>keywordsInput</Searchbox>
+        <Feebacklink>reviewsNavLink</Feebacklink>
+        <Morelink>.//*[@id='reviewsTab']/div[3]/div[text()='More']</Morelink>
+	</Doctor>
+
+</Practo>
