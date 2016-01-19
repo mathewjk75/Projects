@@ -20,54 +20,47 @@ String FirstNameValue = "";
 public String  DataFetch(String filename,String pagename,String elementname) throws Exception{
 try {
 
-DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
-DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
-Document doc = docBuilder.parse (new File(filename));
+	DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
+	DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
+	Document doc = docBuilder.parse (new File(filename));
 
-// normalize text representation
-doc.getDocumentElement ().normalize ();
-System.out.println ("Root element of the doc is " + doc.getDocumentElement().getNodeName());
+	// normalize text representation
+	doc.getDocumentElement ().normalize ();
+	NodeList listOfPersons = doc.getElementsByTagName(pagename);
+	
+	
 
+	for(int s=0; s<listOfPersons.getLength() ; s++){
 
-NodeList listOfPersons = doc.getElementsByTagName(pagename);
-int totalPersons = listOfPersons.getLength();
-//System.out.println("Total no of people : " + totalPersons);
-
-for(int s=0; s<listOfPersons.getLength() ; s++){
-
-
-
-Node firstPersonNode = listOfPersons.item(s);
-if(firstPersonNode.getNodeType() == Node.ELEMENT_NODE){
+		Node firstPersonNode = listOfPersons.item(s);
+		if(firstPersonNode.getNodeType() == Node.ELEMENT_NODE){
 
 
+		Element firstPersonElement = (Element)firstPersonNode; 
 
-Element firstPersonElement = (Element)firstPersonNode; 
+		//-------
+		NodeList firstNameList = firstPersonElement.getElementsByTagName(elementname);
+		Element firstNameElement = (Element)firstNameList.item(0);
 
-//-------
-NodeList firstNameList = firstPersonElement.getElementsByTagName(elementname);
-Element firstNameElement = (Element)firstNameList.item(0);
-
-NodeList textFNList = firstNameElement.getChildNodes();
-//System.out.println("First Name : " + ((Node)textFNList.item(0)).getNodeValue().trim());
-FirstNameValue = (String)textFNList.item(0).getNodeValue().trim();
+		NodeList textFNList = firstNameElement.getChildNodes();
+		FirstNameValue = (String)textFNList.item(0).getNodeValue().trim();
 
 
-}
+		}
 
-}
+	}
 
-}catch (SAXParseException err) {
-System.out.println ("** Parsing error" + ", line " + err.getLineNumber () + ", uri " + err.getSystemId ());
-System.out.println(" " + err.getMessage ());
+	}catch (SAXParseException err) {
+		System.out.println ("** Parsing error" + ", line " + err.getLineNumber () + ", uri " + err.getSystemId ());
+		System.out.println(" " + err.getMessage ());
 
-}catch (SAXException e) {
-Exception x = e.getException ();
-((x == null) ? e : x).printStackTrace ();
+	}catch (SAXException e) {
+		Exception x = e.getException ();
+		((x == null) ? e : x).printStackTrace ();
 
-}catch (Throwable t) {
-t.printStackTrace ();
-}
+	}catch (Throwable t) {
+		t.printStackTrace ();
+	}
 //System.exit (0);
 return FirstNameValue;
 

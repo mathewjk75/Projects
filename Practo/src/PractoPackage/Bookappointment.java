@@ -3,9 +3,7 @@ package PractoPackage;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.firefox.internal.ProfilesIni;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 public class Bookappointment {
@@ -41,6 +39,12 @@ public class Bookappointment {
 		      driver.findElement(By.className(Datafetch.DataFetch("Data/object.xml","Appointment","Booking"))).click();
 		      Thread.sleep(5000);
 		      String appointmentTime=Datafetch.DataFetch("Data/Data.xml","appointment","appointmenttime");
+		      WebElement timeValue= driver.findElement(By.xpath(".//*[@class='book-slot ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only']/span[contains(text(), \"" + appointmentTime + "\")]"));
+		      while (timeValue.isDisplayed()==false){
+		         driver.findElement(By.linkText("NEXT DAY")).click();
+		      
+		      }
+		      
 		      driver.findElement(By.xpath(".//*[@class='book-slot ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only']/span[contains(text(), \"" + appointmentTime + "\")]")).click();
 		      Thread.sleep(5000);
 		      driver.findElement(By.name(Datafetch.DataFetch("Data/object.xml","Appointment","Username"))).clear();
@@ -49,6 +53,7 @@ public class Bookappointment {
 		      driver.findElement(By.name(Datafetch.DataFetch("Data/object.xml","Appointment","EmailId"))).sendKeys(Datafetch.DataFetch("Data/Data.xml","appointment","emailId"));
 		      driver.findElement(By.className(Datafetch.DataFetch("Data/object.xml","Appointment","Submit"))).click();
 		      Thread.sleep(5000);
+		      
 		     	      
 		   }
 		  catch(Exception e)
